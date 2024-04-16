@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Predicción</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Predicción</h1>
+
+      <div id="training-section">
+        <h4>Entrene el modelo...</h4>
+        <button id="train-button">Entrenar modelo (2x + 6)</button>
+        <p id="training-progress"></p>
+      </div>
+
+      <div id="prediction-section">
+        <h2>Ingresar Valor de X</h2>
+        <input type="number" id="x-value" placeholder="Ingrese X" />
+        <button id="predict-button">Predecir Y</button>
+
+        <h2>Resultado de la Predicción</h2>
+        <p id="prediction-result"></p>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script type="module" src="training.js"></script>
+  </body>
+</html>
