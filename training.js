@@ -1,8 +1,9 @@
+// training.js
+
 // Definir variables para el modelo
 let model;
 let training = false; // Iniciar como falso, ya que el entrenamiento no ha comenzado
 
-// Función para entrenar el modelo
 export async function trainModel() {
   // Cambiar el estado de entrenamiento a verdadero
   training = true;
@@ -21,8 +22,19 @@ export async function trainModel() {
   const xs = tf.tensor2d([-6, -5, -4, -3, -2, -1, 0, 1, 2], [9, 1]);
   const ys = tf.tensor2d([-6, -4, -2, 0, 2, 4, 6, 8, 10], [9, 1]);
 
+  const surface = { name: "Loss", tab: "Training" };
+  const history = [];
+
   // Entrenar el modelo
-  await model.fit(xs, ys, { epochs: 500 });
+  await model.fit(xs, ys, {
+    epochs: 500,
+    callbacks: {
+      onEpochEnd: async (epoch, log) => {
+        history.push(log);
+        tfvis.show.history(surface, history, ["loss"]);
+      },
+    },
+  });
 
   // Indicar que el entrenamiento ha terminado
   training = false;
